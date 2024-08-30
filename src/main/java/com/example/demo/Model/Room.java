@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name="Room")
 @NoArgsConstructor
@@ -25,7 +27,7 @@ public class Room {
     @Column(name = "price")
     private int price;
 
-    @ManyToOne
+    @OneToMany(mappedBy = "room")
     @JsonIgnore
-    private RoomCleaner roomCleaner;
+    private List<RoomUser> roomUsers;
 }

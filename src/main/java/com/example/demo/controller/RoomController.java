@@ -23,7 +23,8 @@ public class RoomController {
 
     @PostMapping("/new")
     public String createRoom(@RequestBody Room room){
-        return roomService.createRoom(room);
+        roomService.createRoom(room);
+        return "New room is added.";
     }
 
     @GetMapping("/cheapRooms")
@@ -36,21 +37,21 @@ public class RoomController {
         return roomService.getDvokrevetneSobe();
     }
 
-    @GetMapping("/{type}")
-    public List<Room> findAllRoomsByType(@PathVariable("type") String type){
-        return roomService.findAllRoomsByType(type);
-    }
+//    @GetMapping("/{type}")
+//    public List<Room> findAllRoomsByType(@PathVariable("type") String type){
+//        return roomService.findAllRoomsByType(type);
+//    }
 
     // ZBOG ISTOG PATTERNA RUTA, METODA IZNAD ILI OVA ISPOD NE MOGU ISTOVREMENO BITI U FUNKCIJI (DOK NE NAUCIMO I TO RIJESIT HAHA)
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<?> findById(@PathVariable("id") Long id) {
-//        try{
-//            return new ResponseEntity<>(roomService.findById(id), HttpStatus.OK);
-//        }catch (NoSuchElementException e){
-//            return new ResponseEntity<>("Room with requested id=" + id + " does not exist in our database.", HttpStatus.NOT_FOUND);
-//        }
-//    }
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findById(@PathVariable("id") Long id) {
+        try{
+            return new ResponseEntity<>(roomService.findById(id), HttpStatus.OK);
+        }catch (NoSuchElementException e){
+            return new ResponseEntity<>("Room with requested id=" + id + " does not exist in our database.", HttpStatus.NOT_FOUND);
+        }
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateById(@PathVariable("id") Long id, @RequestBody Room room) {
