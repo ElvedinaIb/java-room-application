@@ -23,4 +23,7 @@ public class Room {
     private String type;
     @Column(name = "price")
     private int price;
+
+    @ManyToOne
+    private RoomCleaner roomCleaner;
 }
