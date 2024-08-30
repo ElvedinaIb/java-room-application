@@ -28,7 +28,7 @@ public class RoomUserService {
         return roomUserRepository.findById(id).get();
     }
 
-    public String addNewRoomUser(RoomUserDTO dto) {
+    public String addNewRoomUser(RoomUserDTO dto) throws NoSuchElementException{
         Room room=roomService.findById(dto.getRoomId());
         RoomUser user=new RoomUser();
         user.setId(dto.getId());

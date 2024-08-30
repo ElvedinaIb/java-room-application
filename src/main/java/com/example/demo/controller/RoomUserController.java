@@ -32,7 +32,7 @@ public class RoomUserController {
     }
 
     @PostMapping("/add-new")
-    public ResponseEntity<?> addNewRoomUser(@RequestBody RoomUserDTO dto){
+    public ResponseEntity<?> addNewRoomUser(@RequestBody RoomUserDTO dto) throws NoSuchElementException{
         try {
             return new ResponseEntity<>(roomUserService.addNewRoomUser(dto), HttpStatus.OK);
         }catch (NoSuchElementException e){
