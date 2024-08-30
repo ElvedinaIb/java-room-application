@@ -1,5 +1,6 @@
 package com.example.demo.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,5 +26,6 @@ public class Room {
     private int price;
 
     @ManyToOne
+    @JsonIgnore
     private RoomCleaner roomCleaner;
 }
