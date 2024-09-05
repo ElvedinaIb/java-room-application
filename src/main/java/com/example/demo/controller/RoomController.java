@@ -23,8 +23,7 @@ public class RoomController {
 
     @PostMapping("/new")
     public String createRoom(@RequestBody Room room){
-        roomService.createRoom(room);
-        return "New room is added.";
+        return roomService.createRoom(room);
     }
 
     @GetMapping("/cheapRooms")

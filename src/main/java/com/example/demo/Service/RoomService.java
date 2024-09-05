@@ -49,8 +49,7 @@ public class RoomService {
     }
 
     public Room findById(Long id) {
-        Optional<Room> optionalRoom=roomRepository.findById(id);
-        return optionalRoom.get();
+        return roomRepository.findById(id).get();
     }
 
     public Room update(Long id, Room room) {

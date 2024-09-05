@@ -38,4 +38,20 @@ public class RoomUserService {
         roomUserRepository.save(user);
         return "New user added successfully.";
     }
+
+    public String updateById(Long id, RoomUserDTO dto) throws NoSuchElementException{
+        RoomUser user = roomUserRepository.findById(id).get();
+        Room room=roomService.findById(dto.getRoomId());
+        user.setFirstName(dto.getFirstName());
+        user.setLastName(dto.getLastName());
+        user.setRoom(room);
+        roomUserRepository.save(user);
+        return "New user updated successfully.";
+    }
+
+    public String deleteById(Long id) {
+        roomUserRepository.findById(id).get();
+        roomUserRepository.deleteById(id);
+        return "Room user with id=" + id + " is deleted.";
+    }
 }

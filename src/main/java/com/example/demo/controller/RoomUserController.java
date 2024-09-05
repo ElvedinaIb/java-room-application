@@ -39,4 +39,22 @@ public class RoomUserController {
             return new ResponseEntity<>("Room with id=" + dto.getRoomId() + " does not exist in our database.", HttpStatus.NOT_FOUND);
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updatedById(@PathVariable("id") Long id, @RequestBody RoomUserDTO dto) throws NoSuchElementException{
+        try {
+            return new ResponseEntity<>(roomUserService.updateById(id, dto), HttpStatus.OK);
+        }catch (NoSuchElementException e){
+            return new ResponseEntity<>("Room user or room with requested id does not exist in our database so room user cannot be updated.", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable("id") Long id) throws NoSuchElementException{
+        try {
+            return new ResponseEntity<>(roomUserService.deleteById(id), HttpStatus.OK);
+        }catch (NoSuchElementException e){
+            return new ResponseEntity<>("Room user with requested id=" + id + " does not exist in our database so it cannot be deleted.", HttpStatus.NOT_FOUND);
+        }
+    }
 }
